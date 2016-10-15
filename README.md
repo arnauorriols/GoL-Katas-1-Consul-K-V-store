@@ -11,7 +11,7 @@ Featuring: Consul, Curl and Docker.
 ## Usage
 ### Start game
 ```console
-$ cat examples/glider | ./start.sh
+$ cat examples/glider.large | ./start.sh
 ```
 
 ### Stop game
