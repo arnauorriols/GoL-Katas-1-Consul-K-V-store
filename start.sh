@@ -1,7 +1,6 @@
 CONSUL_HOST=172.17.0.2:8500
 
 read -d'EOF' initial_board
-# initial_board=$(cat)
 
 echo "Initial board:"
 echo "$initial_board"
@@ -9,11 +8,6 @@ echo "$initial_board"
 grid_width=$(echo "$initial_board" | head -n 1 | wc -w)
 grid_height=$(echo "$initial_board" | wc -l)
 total_cells=$(( grid_width * grid_height - 1 ))
-
-echo "Board width: $grid_width"
-echo "Board height: $grid_height"
-
-echo "Setting up..."
 docker build -t gol.cell:latest -f Cell.GoL.Dockerfile .
 docker build -t gol.conductor:latest -f Conductor.GoL.Dockerfile .
 docker build -t gol.renderer:latest -f Renderer.GoL.Dockerfile .
