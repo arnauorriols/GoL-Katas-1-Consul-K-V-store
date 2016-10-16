@@ -8,7 +8,6 @@ do
 done
 echo ": READY"
 
-round_data=$();
 round_index=$(curl -s http://$CONSUL_HOST/v1/kv/round | jq -r '.[0].ModifyIndex')
 
 while true; do

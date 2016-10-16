@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 
-row=$(( $CELL_NUMBER / $GRID_WIDTH ))
-column=$(( $CELL_NUMBER % $GRID_WIDTH ))
-total_cells=$(( GRID_WIDTH * $GRID_HEIGHT - 1 ))
+row=$(( CELL_NUMBER / GRID_WIDTH ))
+column=$(( CELL_NUMBER % GRID_WIDTH ))
+total_cells=$(( GRID_WIDTH * GRID_HEIGHT - 1 ))
 
 calculate_neighbour_number() {
     relative_x=$1
     relative_y=$2
-    echo $(( (((($CELL_NUMBER + $relative_x - $GRID_WIDTH) % $GRID_WIDTH) + $GRID_WIDTH) % $GRID_WIDTH) + ($GRID_WIDTH * (((($row + $relative_y) % $GRID_HEIGHT) + $GRID_HEIGHT) % $GRID_HEIGHT)) ))
+    echo $(( ((((CELL_NUMBER + relative_x - GRID_WIDTH) % GRID_WIDTH) + GRID_WIDTH) % GRID_WIDTH) + (GRID_WIDTH * ((((row + relative_y) % GRID_HEIGHT) + GRID_HEIGHT) % GRID_HEIGHT)) ))
 }
 
 update_state() {
@@ -63,7 +63,7 @@ while true; do
         | paste -sd+ - \
         | bc
     )
-    if (( $state == 1 ))
+    if (( state == 1 ))
     then
         if (( neighbours_alive < 2 | neighbours_alive > 3 )); then
             state=0

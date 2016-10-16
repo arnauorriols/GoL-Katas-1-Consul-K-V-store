@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-total_cells=$(( $GRID_WIDTH * $GRID_HEIGHT - 1))
+total_cells=$(( GRID_WIDTH * GRID_HEIGHT - 1 ))
 
 ensure_leading_zeros() {
     cell_number=$1
@@ -11,9 +11,9 @@ export leading_zeros=${#total_cells}
 export -f ensure_leading_zeros
 
 get_cell_data() {
-    args=($@)
+    args=( $@ )
     cell=${args[0]}
-    cells_indexes=(${args[@]:1})
+    cells_indexes=( ${args[@]:1} )
     cell_index=$(curl -s http://$CONSUL_HOST/v1/kv/cells/$cell?index=${cells_indexes[10#$cell]} | jq -r '.[0].ModifyIndex')
     echo "$cell,$cell_index"
 }
