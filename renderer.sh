@@ -28,13 +28,16 @@ while true; do
     echo "Game Of Life, Consul K/V Style. Round $round" 
     echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
     echo
+    echo -e "\t *$(seq 0 $(( (GRID_WIDTH - 1) * 2))| xargs printf '%.0s-')*"
     for row in $(seq 0 $(( GRID_HEIGHT - 1 ))); do
-        echo -e "\t $(
+        echo -e "\t |$(
             echo "${cells_state:(( row * GRID_WIDTH )):GRID_WIDTH}" \
             | tr 1 X \
+            | tr 0 ' ' \
             | fold -w1 \
             | paste -sd' '
-        )"
+        )|"
     done
+    echo -e "\t *$(seq 0 $(( (GRID_WIDTH - 1) * 2))| xargs printf '%.0s-')*"
     echo
 done
